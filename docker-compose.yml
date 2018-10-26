@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  node:
+    container_name: joys_node
+    build: node
+    restart: always
+    entrypoint: /root/start.sh
+    volumes:
+      - .:/root/node:rw
+#      - ./files/joys:/root/node:rw
+#      - ./files/keystore:/root/node/joys/keystore:rw
+#      - /etc/localtime:/etc/localtime:ro
+#    command: 'geth --datadir=~/.ethereum/joys --rpccorsdomain="*" --networkid=35855456 --rpc --bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303"  --nat "any" --ethstats=latoken:8382716d0b07b0a3@eth.joys.digital:3000 console'
+    command: '--datadir=/root/node/joys --rpccorsdomain="*" --networkid=35855456 --rpc --bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303"  --nat "any" --ethstats=XXX:8382716d0b07b0a3@eth.joys.digital:3000'
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+      - "8545:8545"
+#    expose:
+#      - "30303/tcp"
+#      - "30303/udp"
+#      - "8545"

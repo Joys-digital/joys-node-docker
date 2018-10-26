@@ -6,6 +6,8 @@ RUN add-apt-repository ppa:ethereum/ethereum
 RUN apt-get update && apt-get install --yes geth
 
 ADD http://boot.joys.digital/genesis.json /root/
+ADD http://boot.joys.digital/static-nodes.json /root/
+
 ADD start.sh /root/start.sh
 RUN chmod +x /root/start.sh
 
