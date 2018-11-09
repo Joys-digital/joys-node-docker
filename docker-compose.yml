@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   node:
@@ -7,9 +7,26 @@ services:
     restart: always
     entrypoint: /root/start.sh
     volumes:
-      - .:/root/node:rw
-    command: '--datadir=/root/node/joys  --rpcvhosts "*" --rpccorsdomain="*" --networkid=35855456 --rpc --bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303"  --nat "any" --ethstats=XXX:8382716d0b07b0a3@eth.joys.digital:3000'
+#      - ${HOME}/node:/root/node
+#      - /etc/localtime:/etc/localtime:ro
+#      - .:/root/node
+#      - .:/root/node:rw
+      - geth_data:/root/node:rw
+#      - ${HOME}/.ethash:/root/.ethash
+#      - connection_data:/root/
+#    command: '--datadir=/root/node/joys  --rpcvhosts "*" --rpccorsdomain="*" --networkid=35855456 --rpc --bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303"  --nat "any" --ethstats=XXX:8382716d0b07b0a3@eth.joys.digital:3000'
     ports:
       - "30303:30303"
       - "30303:30303/udp"
       - "8545:8545"
+#      - "127.0.0.1:8545:8545"
+    stdin_open: true
+    tty: true
+
+volumes:
+    geth_data:
+      driver: local
+#      driver_opts:
+#            type: tmpfs
+#            device: tmpfs
+#            o: "size=20G"

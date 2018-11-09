@@ -11,4 +11,8 @@ ADD http://boot.joys.digital/static-nodes.json /root/
 ADD start.sh /root/start.sh
 RUN chmod +x /root/start.sh
 
+#EXPOSE 30303
+#EXPOSE 30303/udp
+#EXPOSE 8545
+
 ENTRYPOINT /root/start.sh
