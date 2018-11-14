@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -f ~/.intialised ]; then
+if [ ! -f ~/.initialised ]; then
     echo "First time running node..."
     geth --datadir=/root/node/joys init "/root/genesis.json"
     sleep 3
