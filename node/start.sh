@@ -18,6 +18,6 @@ geth \
 --rpccorsdomain="*" \
 --rpcaddr "0.0.0.0" \
 --rpcapi "admin,db,personal,eth,net,web3,shh,txpool" \
---bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303" \
+--bootnodes="enode://1750c090cd33c713c5bdba7d77e01223126fe5bde3a9829ef177a33bb911da3d1c5369ea089e1862c4c149761249c702c00fce70cefe764d6dbfc2853bf74848@95.213.151.253:30303,enode://d5a16003ec151aced5683b6d437c851fcf5d5d3338a193f8180e59e95157d2c5a75864012dc44e60509b1d9aa56ee61f46b38aae1c7c102b565ee22f58fcd6a9@92.53.69.64:30303" \
 --nat "any" \
 --ethstats=${NODE_NAME}:8382716d0b07b0a3@eth.joys.digital:3000
