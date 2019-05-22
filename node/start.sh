@@ -3,10 +3,17 @@
 if [ ! -f ~/.initialised ]; then
     echo "First time running node..."
     geth --datadir=/root/node/joys init "/root/genesis.json"
-    sleep 3
-    cp /root/static-nodes.json /root/node/joys/geth
     touch ~/.initialised
 fi
+if [ ! -f ~/.fork1 ]; then
+    echo "First time running node..."
+    geth --datadir=/root/node/joys init "/root/fork1.json"
+    touch ~/.fork1
+fi
+
+sleep 3
+cp /root/static-nodes.json /root/node/joys/geth
+
 
 NODE_NAME=docker.${HOSTNAME}
 
