@@ -1,5 +1,7 @@
-joys-node-docker v.2 (21/04/2019)
+Joys-node-docker v.2.1 (15/01/2020)
 ================
+v.2.1 - new nodes added
+
 
 Joys-node Docker files
 
