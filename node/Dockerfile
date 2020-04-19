@@ -1,12 +1,13 @@
 FROM ubuntu:18.04
-LABEL version="8.0"
+LABEL version="9.0"
 
 RUN apt-get update && apt-get install --yes software-properties-common apt-utils
 RUN add-apt-repository ppa:ethereum/ethereum
 RUN apt-get update && apt-get install geth --yes
 
-ADD http://boot.joys.digital/genesis.json /root/
-ADD http://boot.joys.digital/fork1.json /root/
+#ADD http://boot.joys.digital/genesis.json /root/
+#ADD http://boot.joys.digital/fork1.json /root/
+ADD http://boot.joys.digital/fork2.json /root/
 ADD http://boot.joys.digital/static-nodes.json /root/
 
 ADD start.sh /root/start.sh

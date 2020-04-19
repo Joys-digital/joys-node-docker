@@ -6,15 +6,20 @@ if [ ! -f ~/.initialised ]; then
     touch ~/.initialised
 fi
 if [ ! -f ~/.fork1 ]; then
-    echo "w/o fork running node..."
+    echo "fork1 running node..."
     geth --datadir=/root/node/joys init "/root/fork1.json"
     touch ~/.fork1
+fi
+if [ ! -f ~/.fork2 ]; then
+    echo "fork2 running node..."
+    geth --datadir=/root/node/joys init "/root/fork2.json"
+    touch ~/.fork2
 fi
 
 sleep 3
 cp /root/static-nodes.json /root/node/joys/geth
 
-NODE_NAME=dockerf.${HOSTNAME}
+NODE_NAME=dockerff.${HOSTNAME}
 
 geth \
 --datadir=/root/node/joys \
