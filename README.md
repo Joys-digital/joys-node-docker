@@ -1,6 +1,6 @@
 Joys-node-docker v.2.2 (19/04/2020)
 ================
-v.2.2 - added fork2 support
+v.2.2 - added fork2 (Istanbul) support
 
 v.2.1 - new nodes added
 
