@@ -27,3 +27,7 @@ sudo docker-compose -f docker-compose.yml up --build
 **The block speed in PoAS is 1 block per second, so we recommend using an SSD.**
 
 
+How to staking JOYS: 
+--------------------
+
+https://staking.joys.digital/
