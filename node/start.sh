@@ -12,13 +12,13 @@
 #    geth --datadir=/root/node/joys init "/root/fork1.json"
 #    touch ~/.fork1
 #fi
-
-# delete this
-if [ ! -f ~/.fork2 ]; then
-    echo "fork2 running node..."
+#
+#if [ ! -f ~/.fork2 ]; then
+#    echo "fork2 running node..."
 #    geth --datadir=/root/node/joys init "/root/fork2.json"
-    touch ~/.fork2
-fi
+#    touch ~/.fork2
+#fi
+
 # PoAS
 if [ ! -f ~/.poas1 ]; then
     echo "PoAS running node..."
