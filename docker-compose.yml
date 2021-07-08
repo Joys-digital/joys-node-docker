@@ -9,8 +9,8 @@ services:
     volumes:
       - geth_data:/root/node:rw
     ports:
-      - "30303:30303"
-      - "30303:30303/udp"
+      - "31323:31323"
+      - "31323:31323/udp"
       - "8545:8545"
     stdin_open: true
     tty: true

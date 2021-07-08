@@ -1,39 +1,58 @@
 #!/usr/bin/env bash
 
-if [ ! -f ~/.initialised ]; then
-    echo "First time running node..."
-    geth --datadir=/root/node/joys init "/root/genesis.json"
-    touch ~/.initialised
-fi
-if [ ! -f ~/.fork1 ]; then
-    echo "fork1 running node..."
-    geth --datadir=/root/node/joys init "/root/fork1.json"
-    touch ~/.fork1
-fi
+# deprecated PoW
+#
+#if [ ! -f ~/.initialised ]; then
+#    echo "First time running node..."
+#    geth --datadir=/root/node/joys init "/root/genesis.json"
+#    touch ~/.initialised
+#fi
+#if [ ! -f ~/.fork1 ]; then
+#    echo "fork1 running node..."
+#    geth --datadir=/root/node/joys init "/root/fork1.json"
+#    touch ~/.fork1
+#fi
+
+# delete this
 if [ ! -f ~/.fork2 ]; then
     echo "fork2 running node..."
-    geth --datadir=/root/node/joys init "/root/fork2.json"
+#    geth --datadir=/root/node/joys init "/root/fork2.json"
     touch ~/.fork2
+fi
+# PoAS
+if [ ! -f ~/.poas1 ]; then
+    echo "PoAS running node..."
+    geth --datadir=/root/node/joys-poas init "/root/joys-posa.json"
+    touch ~/.poas1
+fi
+# json-key оne-time migration
+if [ -f ~/.fork2 ]; then
+    echo "fork2 found, attempt key migration..."
+    if [ ! -f ~/.migrated ]; then
+      echo "Migrating json keys..."
+      cp /root/node/joys/keystore/* /root/node/joys-poas/keystore/
+    touch ~/.migrated
+    fi
 fi
 
 sleep 3
-cp /root/static-nodes.json /root/node/joys/geth
+cp /root/static-nodes.json /root/node/joys-poas/geth
 
-NODE_NAME=dockerff.${HOSTNAME}
+NODE_NAME=dockerp.${HOSTNAME}
 
 geth \
---datadir=/root/node/joys \
+--datadir=/root/node/joys-poas \
 --networkid=35855456 \
---rpc \
---rpcvhosts "*" \
---rpccorsdomain="*" \
---rpcaddr "0.0.0.0" \
---rpcapi "admin,db,personal,eth,net,web3,shh,txpool" \
+--http \
+--http.vhosts "*" \
+--http.corsdomain "*" \
+--http.addr 0.0.0.0 \
+--http.api "eth,net,web3,txpool" \
 --bootnodes="\
-enode://3d71b3f2e8e4463e9b91c9c9f7794e67df4892cfb2354bc0444f9b6aa66ea6c99451e567b89e795e7ebcff79e56679234169f85f197b282b5d5f59e3c4cc3a30@92.53.100.7:30303,\
-enode://a4cd386a86c607dab8686a5e919757df08a1006bcfd9df75d0d58338f6985e91bc8091a49be36acb582a3c2c70db33e36f59741311325fc6cb24073eb1f2dfee@185.91.52.220:30303,\
-enode://aa2a8c5438adef24647871bdfd75496a8a4b47226253385cb7cbcaa7fbcfc9872c64b3990033abfe584dbfdeccca013d64a659b7426c88ed71a0987b969bbd83@79.141.65.76:30303,\
-enode://e3bfcdc6999131f9a34a96d9fd77da2c2721a9002d7994d887c2fea1ba876ffdea6dae285c6a4ced7d7d694c39a39e5dee3480934a181a0fe4d08183ab5157fb@185.17.146.63:30303,\
-enode://d5a16003ec151aced5683b6d437c851fcf5d5d3338a193f8180e59e95157d2c5a75864012dc44e60509b1d9aa56ee61f46b38aae1c7c102b565ee22f58fcd6a9@92.53.69.64:30303" \
+enode://98b954bb16ece6ad373a040f0ebac1b80e0bb4be36102ea6dcf7ea36ddd83f7ec72966727959d00bc8134bb7dd9a92cda533a3e28e8334c455f655c01704ed56@188.124.39.113:31323,\
+enode://fe09937a938b3747fcd9b89db94d5ae9e2d319751a8139085ed7f8cc79d4409c5cffc53807cf6db65b45c9e12b9754c3393e4db0ee90a3f9de2bc1ab6c5a3ba4@188.124.39.231:31323" \
+--port 31323 \
 --nat "any" \
---ethstats=${NODE_NAME}:8382716d0b07b0a3@eth.joys.digital:3000
+--txlookuplimit=0 \
+--miner.gasprice 20000000000 \
+--ethstats=${NODE_NAME}:q32399VqOO4n@poas.joys.digital:3000
