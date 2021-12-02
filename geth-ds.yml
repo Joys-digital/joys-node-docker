@@ -5,6 +5,9 @@ metadata:
   labels:
     app: geth
 spec:
+  selector:
+    matchLabels:
+      app: geth
   template:
     metadata:
       labels:
