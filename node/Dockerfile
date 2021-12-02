@@ -1,10 +1,4 @@
-FROM ubuntu:20.04
-LABEL version="9.0"
-
-RUN apt-get update && apt-get install --yes software-properties-common apt-utils
-RUN add-apt-repository ppa:ethereum/ethereum
-RUN apt-get update && apt-get install geth --yes
-
+FROM ethereum/client-go:v1.10.8
 ADD http://boot.joys.digital/posa/joys-posa.json /root/
 ADD http://boot.joys.digital/posa/static-nodes.json /root/
 
@@ -14,5 +8,8 @@ RUN chmod +x /root/start.sh
 EXPOSE 31323
 EXPOSE 31323/udp
 EXPOSE 8545
+EXPOSE 8546
 
+#STOPSIGNAL SIGINT
+#ENTRYPOINT ["geth"]
 ENTRYPOINT /root/start.sh

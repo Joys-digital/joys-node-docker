@@ -1,9 +1,10 @@
-version: '3'
+version: '2'
 
 services:
   node:
     container_name: joys_node
     build: node
+#    image: ethereum/client-go:v1.10.8
     restart: always
     entrypoint: /root/start.sh
     volumes:
